@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
     connection.query(myQuery, (err, rows) => {
         if (err) { 
             throw err;
-            console.log(err);
+            console.log(err + " and " + process.env.MYSQL_API_USER);
         }
         else {
             console.log(rows);
