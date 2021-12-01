@@ -14,6 +14,7 @@ const connection = mysql.createConnection({
 });
 
 //app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
 
 app.get('/', (req, res) => {
     res.render('pages/home/index.html');
