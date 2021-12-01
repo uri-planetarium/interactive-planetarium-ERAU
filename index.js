@@ -13,13 +13,16 @@ const connection = mysql.createConnection({
     database: 'heroku_7e34334c857eca2d'
 });
 
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.render('pages/home/index.ejs');
+    res.render('pages/home/index.html');
     let myQuery = 'SELECT * FROM users;';
     connection.query(myQuery, (err, rows) => {
-        if (err) throw err;
+        if (err) { 
+            throw err;
+            console.log(err);
+        }
         else {
             console.log(rows);
             //res.render('pages/index.ejs', { rows });
