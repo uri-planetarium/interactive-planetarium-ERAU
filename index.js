@@ -16,14 +16,14 @@ const connection = mysql.createConnection({
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    let myQuery = 'SELECT * FROM users;';
-    connection.query(myQuery, (err, rows) => {
-        if (err) throw err;
-        else {
-            console.log(rows);
-            res.render('pages/index.ejs', { rows });
-        }
-    });
+    // let myQuery = 'SELECT * FROM users;';
+    // connection.query(myQuery, (err, rows) => {
+    //     if (err) throw err;
+    //     else {
+    //         console.log(rows);
+    //         res.render('pages/index.ejs', { rows });
+    //     }
+    // });
 });
 
 app.listen(port, () => {
