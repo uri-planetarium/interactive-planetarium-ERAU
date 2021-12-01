@@ -16,7 +16,7 @@ const port = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.render('views/pages/home/index.ejs');
+    res.render('home');
     // let myQuery = 'SELECT * FROM users;';
     // connection.query(myQuery, (err, rows) => {
     //     if (err) throw err;
