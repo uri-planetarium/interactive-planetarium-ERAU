@@ -6,25 +6,24 @@ require('dotenv').config();
 const MYSQL_API_USER = process.env.MYSQL_API_USER;
 const MYSQL_API_PASS = process.env.MYSQL_API_PASS;
 
-// const connection = mysql.createConnection({
-//     host: 'us-cdbr-east-04.cleardb.com',
-//     user: MYSQL_API_USER,
-//     password: MYSQL_API_PASS,
-//     database: 'heroku_7e34334c857eca2d'
-// });
+const connection = mysql.createConnection({
+    host: 'us-cdbr-east-04.cleardb.com',
+    user: MYSQL_API_USER,
+    password: MYSQL_API_PASS,
+    database: 'heroku_7e34334c857eca2d'
+});
 
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    //res.render('./views/pages/home/index.ejs');
-    // let myQuery = 'SELECT * FROM users;';
-    // connection.query(myQuery, (err, rows) => {
-    //     if (err) throw err;
-    //     else {
-    //         console.log(rows);
-    //         res.render('pages/index.ejs', { rows });
-    //     }
-    // });
+    let myQuery = 'SELECT * FROM users;';
+    connection.query(myQuery, (err, rows) => {
+        if (err) throw err;
+        else {
+            console.log(rows);
+            res.render('pages/index.ejs', { rows });
+        }
+    });
 });
 
 app.listen(port, () => {
