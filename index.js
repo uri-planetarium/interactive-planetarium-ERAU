@@ -17,7 +17,7 @@ const connection = mysql.createConnection({
 app.engine('html', require('ejs').renderFile);
 
 app.get('/', (req, res) => {
-    res.send(process.env.MYSQL_API_USER);
+    res.send("This is the user " + process.env.MYSQL_API_USER);
     //res.render('pages/home/index.html');
     // let myQuery = 'SELECT * FROM users;';
     // connection.query(myQuery, (err, rows) => {
