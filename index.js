@@ -1,8 +1,8 @@
-require('env2')('.env');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const mysql = require('mysql');
+require('dotenv').config();
 const MYSQL_API_USER = process.env.MYSQL_API_USER;
 const MYSQL_API_PASS = process.env.MYSQL_API_PASS;
 
