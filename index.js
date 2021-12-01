@@ -16,6 +16,7 @@ const MYSQL_API_PASS = process.env.MYSQL_API_PASS;
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
+    res.render('views/pages/home/index.ejs');
     // let myQuery = 'SELECT * FROM users;';
     // connection.query(myQuery, (err, rows) => {
     //     if (err) throw err;
