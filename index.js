@@ -17,18 +17,19 @@ const connection = mysql.createConnection({
 app.engine('html', require('ejs').renderFile);
 
 app.get('/', (req, res) => {
-    res.render('pages/home/index.html');
-    let myQuery = 'SELECT * FROM users;';
-    connection.query(myQuery, (err, rows) => {
-        if (err) { 
-            throw err;
-            console.log(err + " and " + process.env.MYSQL_API_USER);
-        }
-        else {
-            console.log(rows);
-            //res.render('pages/index.ejs', { rows });
-        }
-    });
+    res.send(process.env.MYSQL_API_USER);
+    //res.render('pages/home/index.html');
+    // let myQuery = 'SELECT * FROM users;';
+    // connection.query(myQuery, (err, rows) => {
+    //     if (err) { 
+    //         throw err;
+    //         console.log(err + " and " + process.env.MYSQL_API_USER);
+    //     }
+    //     else {
+    //         console.log(rows);
+    //         //res.render('pages/index.ejs', { rows });
+    //     }
+    // });
 });
 
 app.listen(port, () => {
