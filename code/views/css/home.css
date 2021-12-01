@@ -1,0 +1,17 @@
+body {
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: bisque;
+}
+
+input {
+    font-size: 40px;
+    width: 30%;
+    height: 50px;
+}
+
+.userInput {
+    text-align: center;
+}
+
