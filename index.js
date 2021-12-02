@@ -5,7 +5,6 @@ const port = process.env.PORT || 3000;
 const mysql = require('mysql');
 const MYSQL_API_USER = process.env.MYSQL_API_USER;
 const MYSQL_API_PASS = process.env.MYSQL_API_PASS;
-const test = process.env.test;
 
 const conn = mysql.createConnection({
     host: 'us-cdbr-east-04.cleardb.com',
