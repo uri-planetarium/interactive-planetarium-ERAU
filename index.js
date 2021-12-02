@@ -14,7 +14,7 @@ const conn = mysql.createConnection({
     database: 'heroku_7e34334c857eca2d'
 });
 
-conn.connection(function(err) {
+conn.connect(function(err) {
     if (err) {
         console.log("Not Connected");
         throw err;
