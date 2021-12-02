@@ -2,10 +2,10 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const mysql = require('mysql');
-const dotenv = require('dotenv')
-dotenv.config();
+require('dotenv').config();
 const MYSQL_API_USER = process.env.MYSQL_API_USER;
 const MYSQL_API_PASS = process.env.MYSQL_API_PASS;
+const test = process.env.test;
 
 const connection = mysql.createConnection({
     host: 'us-cdbr-east-04.cleardb.com',
@@ -18,7 +18,7 @@ const connection = mysql.createConnection({
 app.engine('html', require('ejs').renderFile);
 
 app.get('/', (req, res) => {
-    res.send("This is the user " + MYSQL_API_USER);
+    res.send("This is the user " + test);
     //res.render('pages/home/index.html');
     // let myQuery = 'SELECT * FROM users;';
     // connection.query(myQuery, (err, rows) => {
