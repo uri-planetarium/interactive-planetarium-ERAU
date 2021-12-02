@@ -14,6 +14,14 @@ const connection = mysql.createConnection({
     database: 'heroku_7e34334c857eca2d'
 });
 
+connection.connection(function(err) {
+    if (err) {
+        console.log("Not Connected");
+        throw err;
+    } 
+    console.log("Connected!");
+});
+
 //app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
