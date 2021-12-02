@@ -16,10 +16,10 @@ const conn = mysql.createConnection({
 
 conn.connect(function(err) {
     if (err) {
-        console.log("Not Connected");
+        console.log("ERROR: -index.js- MySQL Database could not connect ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         throw err;
     } 
-    console.log("Connected!");
+    console.log("SUCCESS: -index.js- MySQL Database connected! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 });
 
 //app.set('view engine', 'ejs');
@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
     connection.query(myQuery, (err, rows) => {
         if (err) { 
             throw err;
-            console.log(err + " and " + process.env.MYSQL_API_USER);
+            console.log("ERROR: -index.js- Query could not query ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
         else {
             console.log(rows);
@@ -56,7 +56,6 @@ app.get('/', (req, res) => {
     });
 });
 
-
 app.listen(port, () => {
-    console.log(`Listening on port http://localhost:${port}`);
+    console.log(`SUCCESS: -index.js- Listening on port http://localhost:${port} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);;
 });
