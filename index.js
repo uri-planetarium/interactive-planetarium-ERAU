@@ -7,14 +7,14 @@ const MYSQL_API_USER = process.env.MYSQL_API_USER;
 const MYSQL_API_PASS = process.env.MYSQL_API_PASS;
 const test = process.env.test;
 
-const connection = mysql.createConnection({
+const conn = mysql.createConnection({
     host: 'us-cdbr-east-04.cleardb.com',
     user: MYSQL_API_USER,
     password: MYSQL_API_PASS,
     database: 'heroku_7e34334c857eca2d'
 });
 
-connection.connection(function(err) {
+conn.connection(function(err) {
     if (err) {
         console.log("Not Connected");
         throw err;
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
     //res.send("This is the user test " + test);
     res.render('pages/home/index.html');
     let myQuery = 'SELECT * FROM users;';
-    connection.query(myQuery, (err, rows) => {
+    conn.query(myQuery, (err, rows) => {
         if (err) { 
             throw err;
         }
