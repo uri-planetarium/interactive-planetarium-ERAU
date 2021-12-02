@@ -18,6 +18,21 @@ const connection = mysql.createConnection({
 app.engine('html', require('ejs').renderFile);
 
 app.get('/', (req, res) => {
+    //res.send("This is the user test " + test);
+    res.render('pages/home/index.html');
+    let myQuery = 'SELECT * FROM users;';
+    connection.query(myQuery, (err, rows) => {
+        if (err) { 
+            throw err;
+        }
+        else {
+            console.log(rows);
+            //res.render('pages/index.ejs', { rows });
+        }
+    });
+});
+
+app.get('/', (req, res) => {
     res.send("This is the user test " + test);
     //res.render('pages/home/index.html');
     let myQuery = 'SELECT * FROM users;';
@@ -32,6 +47,7 @@ app.get('/', (req, res) => {
         }
     });
 });
+
 
 app.listen(port, () => {
     console.log(`Listening on port http://localhost:${port}`);
