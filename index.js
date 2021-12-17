@@ -17,8 +17,9 @@ conn.connect(function(err) {
     if (err) {
         console.log("ERROR: -index.js- MySQL Database could not connect ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         throw err;
-    } 
-    console.log("SUCCESS: -index.js- MySQL Database connected! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    } else {
+        console.log("SUCCESS: -index.js- MySQL Database connected! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
 });
 
 //app.set('view engine', 'ejs');
@@ -40,13 +41,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.send("This is the user test " + test);
     //res.render('pages/home/index.html');
     let myQuery = 'SELECT * FROM users;';
-    connection.query(myQuery, (err, rows) => {
-        if (err) { 
-            throw err;
+    conn.query(myQuery, (err, rows) => {
+        if (err) {
             console.log("ERROR: -index.js- Query could not query ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            throw err;
         }
         else {
             console.log(rows);
@@ -56,5 +56,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`SUCCESS: -index.js- Listening on port http://localhost:${port} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);;
+    console.log(`SUCCESS: -index.js- Listening on port http://localhost:${port} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
 });
