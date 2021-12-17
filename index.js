@@ -13,14 +13,14 @@ const conn = mysql.createConnection({
     database: 'heroku_7e34334c857eca2d'
 });
 
-conn.connect(function(err) {
-    if (err) {
-        console.log("ERROR: -index.js- MySQL Database could not connect ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        throw err;
-    } else {
-        console.log("SUCCESS: -index.js- MySQL Database connected! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    }
-});
+// conn.connect(function(err) {
+//     if (err) {
+//         console.log("ERROR: -index.js- MySQL Database could not connect ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//         throw err;
+//     } else {
+//         console.log("SUCCESS: -index.js- MySQL Database connected! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//     }
+// });
 
 //app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
@@ -28,32 +28,32 @@ app.engine('html', require('ejs').renderFile);
 app.get('/', (req, res) => {
     //res.send("This is the user test " + test);
     res.render('pages/home/index.html');
-    let myQuery = 'SELECT * FROM users;';
-    conn.query(myQuery, (err, rows) => {
-        if (err) { 
-            throw err;
-        }
-        else {
-            console.log(rows);
-            //res.render('pages/index.ejs', { rows });
-        }
-    });
+    // let myQuery = 'SELECT * FROM users;';
+    // conn.query(myQuery, (err, rows) => {
+    //     if (err) {
+    //         throw err;
+    //     }
+    //     else {
+    //         console.log(rows);
+    //         //res.render('pages/index.ejs', { rows });
+    //     }
+    // });
 });
 
-app.get('/', (req, res) => {
-    //res.render('pages/home/index.html');
-    let myQuery = 'SELECT * FROM users;';
-    conn.query(myQuery, (err, rows) => {
-        if (err) {
-            console.log("ERROR: -index.js- Query could not query ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            throw err;
-        }
-        else {
-            console.log(rows);
-            //res.render('pages/index.ejs', { rows });
-        }
-    });
-});
+// app.get('/', (req, res) => {
+//     //res.render('pages/home/index.html');
+//     let myQuery = 'SELECT * FROM users;';
+//     conn.query(myQuery, (err, rows) => {
+//         if (err) {
+//             console.log("ERROR: -index.js- Query could not query ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//             throw err;
+//         }
+//         else {
+//             console.log(rows);
+//             //res.render('pages/index.ejs', { rows });
+//         }
+//     });
+// });
 
 app.listen(port, () => {
     console.log(`SUCCESS: -index.js- Listening on port http://localhost:${port} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
