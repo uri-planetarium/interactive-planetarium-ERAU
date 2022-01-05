@@ -1,4 +1,4 @@
-CREATE DATABASE planetarium_uri_db;
+-- CREATE DATABASE planetarium_uri_db;
 
 DROP TABLE IF EXISTS lobbys;
 DROP TABLE IF EXISTS games;
