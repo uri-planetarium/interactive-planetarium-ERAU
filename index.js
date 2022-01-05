@@ -13,6 +13,8 @@ if (process.env.NODE_ENV === "production") {
     /* Serve our static content */
     console.log("In Production mode");
     app.use(express.static(path.join(__dirname, "player_client/build")));
+} else {
+    console.log("Not in Production mode");
 }
 
 require("./APIs/games_API")(app, pool);
