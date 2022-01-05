@@ -31,6 +31,9 @@ body {
     padding-right: 30px;
 }
 
+.input-container h1 {
+    margin: 5px;
+}
 .input-container h2 {
     text-align: left;
 }

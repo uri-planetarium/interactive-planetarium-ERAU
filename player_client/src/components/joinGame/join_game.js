@@ -51,7 +51,7 @@ const JoinGame = () => {
     return (
         <Fragment>
             <div class="login-container">
-                <h1>Join Game</h1>
+                <h1>Join a Game</h1>
                 <div class="login-container2">
                     <form onSubmit={getGame}>
                         <div class="input-container">
