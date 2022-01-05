@@ -12,7 +12,10 @@ const devConfig = {
 
 /* Heroku Postgresql Credentials */
 const proConfig = {
-    connectionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+      }
 }
 
 const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
