@@ -12,13 +12,9 @@ const devConfig = {
 
 /* Heroku Postgresql Credentials */
 const proConfig = {
-    conenctionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL
 }
 
-//const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
-console.log("The database url is " + process.env.DATABASE_URL);
-const pool = new Pool({
-    conenctionString: process.env.DATABASE_URL
-});
+const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
 
 module.exports = pool;
