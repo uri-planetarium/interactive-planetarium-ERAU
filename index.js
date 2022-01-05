@@ -11,10 +11,9 @@ app.use(express.json());
 
 if (process.env.NODE_ENV === "production") {
     /* Serve our static content */
+    console.log("In Production mode");
     app.use(express.static(path.join(__dirname, "player_client/build")));
 }
-
-app.use(express.static(path.join(__dirname, "player_client/build")));
 
 require("./APIs/games_API")(app, pool);
 require("./APIs/lobbys_API")(app, pool);
