@@ -1,11 +1,20 @@
-     const Pool = require("pg").Pool;
+const Pool = require("pg").Pool;
+require("dotenv").config();
 
-const pool = new Pool({
-    user: "postgres",
-    password: "Basque1Cheese2Cake3",
-    host: "localhost",
-    port: 5432,
-    database: "planetarium_uri_db"
-});
+/* Local Postgresql Credentials */
+const devConfig = {
+    user: process.env.PG_USER,
+    password: process.env.PG_PASSWORD,
+    host: process.env.PG_HOST,
+    database: process.env.PG_DATABASE,
+    port: process.env.PG_PORT
+};
+
+/* Heroku Postgresql Credentials */
+const proConfig = {
+    conenctionString: process.env.DATABASE_URL
+}
+
+const pool = new Pool(process.env.NODE_ENV === "production" ? proconfig : devConfig);
 
 module.exports = pool;

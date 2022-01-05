@@ -1,15 +1,24 @@
 const express = require("express"),
     app = express(),
     cors = require("cors"), 
-    pool = require("./APIs/database");
+    pool = require("./APIs/database"),
+    path = require("path"),
+    PORT = process.env.PORT || 5000;
 
 // middleware
 app.use(cors());
 app.use(express.json());
 
+if (process.env.NODE_ENV === "production") {
+    /* Serve our static content */
+    app.use(express.static(path.join(__dirname, "player_client/build")));
+}
+
+app.use(express.static(path.join(__dirname, "player_client/build")));
+
 require("./APIs/games_API")(app, pool);
 require("./APIs/lobbys_API")(app, pool);
 
-app.listen(5000, () => {
-    console.log("Server has started on port 5000");
+app.listen(PORT, () => {
+    console.log(`Server has started on port ${PORT}`);
 })

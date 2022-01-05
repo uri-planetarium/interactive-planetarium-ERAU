@@ -12,8 +12,8 @@ const JoinGame = () => {
 
         try {
             /* Make GET request for game */
-            console.debug(" Fetching " + ` http://localhost:5000/api/games/${game_code}`);
-            const response = await fetch(`http://localhost:5000/api/games/${game_code}`);
+            console.debug(" Fetching " + ` /api/games/${game_code}`);
+            const response = await fetch(`/api/games/${game_code}`);
             const jsonData = await response.json();
             
             /* If game is currently active, create the player */
@@ -33,8 +33,8 @@ const JoinGame = () => {
             const body = { player_name };
 
             /* Make POST request for player */
-            console.debug("Fetching " + ` http://localhost:5000/api/lobbys/${jsonData.game_id}`);
-            const response = await fetch(`http://localhost:5000/api/lobbys/${jsonData.game_id}`, {
+            console.debug("Fetching " + ` /api/lobbys/${jsonData.game_id}`);
+            const response = await fetch(`/api/lobbys/${jsonData.game_id}`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
