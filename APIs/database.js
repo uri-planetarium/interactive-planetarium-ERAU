@@ -15,6 +15,6 @@ const proConfig = {
     conenctionString: process.env.DATABASE_URL
 }
 
-const pool = new Pool(process.env.NODE_ENV === "production" ? proconfig : devConfig);
+const pool = new Pool(process.env.NODE_ENV === "production" ? proConfig : devConfig);
 
 module.exports = pool;
