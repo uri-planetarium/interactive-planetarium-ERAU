@@ -1,60 +1,15 @@
-require('dotenv').config({path: __dirname + '/.env'});
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
-const mysql = require('mysql');
-const MYSQL_API_USER = process.env.MYSQL_API_USER;
-const MYSQL_API_PASS = process.env.MYSQL_API_PASS;
+const express = require("express"),
+    app = express(),
+    cors = require("cors"), 
+    pool = require("./APIs/database");
 
-const conn = mysql.createConnection({
-    host: 'us-cdbr-east-04.cleardb.com',
-    user: MYSQL_API_USER,
-    password: MYSQL_API_PASS,
-    database: 'heroku_7e34334c857eca2d'
-});
+// middleware
+app.use(cors());
+app.use(express.json());
 
-// conn.connect(function(err) {
-//     if (err) {
-//         console.log("ERROR: -index.js- MySQL Database could not connect ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-//         throw err;
-//     } else {
-//         console.log("SUCCESS: -index.js- MySQL Database connected! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-//     }
-// });
+require("./APIs/games_API")(app, pool);
+require("./APIs/lobbys_API")(app, pool);
 
-//app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
-
-app.get('/', (req, res) => {
-    //res.send("This is the user test " + test);
-    res.render('pages/home/index.html');
-    // let myQuery = 'SELECT * FROM users;';
-    // conn.query(myQuery, (err, rows) => {
-    //     if (err) {
-    //         throw err;
-    //     }
-    //     else {
-    //         console.log(rows);
-    //         //res.render('pages/index.ejs', { rows });
-    //     }
-    // });
-});
-
-// app.get('/', (req, res) => {
-//     //res.render('pages/home/index.html');
-//     let myQuery = 'SELECT * FROM users;';
-//     conn.query(myQuery, (err, rows) => {
-//         if (err) {
-//             console.log("ERROR: -index.js- Query could not query ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-//             throw err;
-//         }
-//         else {
-//             console.log(rows);
-//             //res.render('pages/index.ejs', { rows });
-//         }
-//     });
-// });
-
-app.listen(port, () => {
-    console.log(`SUCCESS: -index.js- Listening on port http://localhost:${port} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
-});
+app.listen(5000, () => {
+    console.log("Server has started on port 5000");
+})
