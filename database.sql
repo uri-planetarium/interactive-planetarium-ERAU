@@ -1,10 +1,10 @@
--- CREATE DATABASE planetarium_uri_db;
+CREATE DATABASE planetarium_uri_db;
 
 DROP TABLE IF EXISTS lobbys;
 DROP TABLE IF EXISTS games;
 
 CREATE TABLE games (
-    game_id INT GENERATED ALWAYS AS IDENTITY,
+    game_id SERIAL,
     game_code INT NOT NULL CHECK (game_code >= 0) UNIQUE,
     is_active BOOL NOT NULL DEFAULT false,
     is_playing BOOL NOT NULL DEFAULT false,
@@ -12,7 +12,7 @@ CREATE TABLE games (
 );
 
 CREATE TABLE lobbys (
-    player_id INT GENERATED ALWAYS AS IDENTITY,
+    player_id SERIAL,
     game_id INT,
     player_name VARCHAR(20) NOT NULL,
     player_score INT NOT NULL CHECK (player_score >= 0) DEFAULT 0,
