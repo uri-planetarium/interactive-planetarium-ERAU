@@ -10,11 +10,12 @@ app.use(cors());
 app.use(express.json());
 
 if (process.env.NODE_ENV === "production") {
+    console.log("In Production Mode");
+
     /* Serve our static content */
-    console.log("In Production mode");
     app.use(express.static(path.join(__dirname, "player_client/build")));
 } else {
-    console.log("Not in Production mode");
+    console.log("In Developer Mode");
 }
 
 require("./APIs/games_API")(app, pool, path);
