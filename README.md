@@ -5,7 +5,7 @@
 
 <h3 align="center">🔘 How to use 🔘</h3>
 
-![Border](https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/Divider.png)
+![Border](https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Divider.png)
 
 - This guide assumes Node v16.13.1 and npm v8.1.2
 
@@ -111,17 +111,17 @@
   
   When pushing changes, `git push both` will push committed changes to both repositories
 
-<h3 align="center">🔘 Diagrams 🔘 (Subject to change)</h3>
+<h3 align="center">🔘 Diagrams 🔘</h3>
 
-![Border](https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/Divider.png)
+![Border](https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Divider.png)
 
-<h2>Web UI-API Interactions</h2>
+<h2>Web UI-API Interactions  (Subject to change)</h2>
 
 <p align="center" >
   <img src="https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Web-UI-API-interactions.png">
 </p>
 
-<h2>Postgres Table Relationships</h2>
+<h2>Postgres Table Relationships  (Subject to change)</h2>
 <p align="center" >
   <img src="https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Table-Relationships.png" width="600">
 </p>
