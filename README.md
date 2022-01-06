@@ -117,8 +117,12 @@
 
 <h2>Web UI-API Interactions</h2>
 
-![web-ui-API-interactions](https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Web-UI-API-interactions.png)
+<p align="center" >
+  <img src="https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Web-UI-API-interactions.png">
+</p>
 
 <h2>Postgres Table Relationships</h2>
+<p align="center" >
+  <img src="https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Table-Relationships.png" width="600">
+</p>
 
-![web-ui-API-interactions](https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Table-Relationships.png)
