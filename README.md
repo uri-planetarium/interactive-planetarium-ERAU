@@ -111,7 +111,7 @@
   
   When pushing changes, `git push both` will push committed changes to both repositories
 
-<h3 align="center">🔘 Diagrams 🔘</h3>
+<h3 align="center">🔘 Diagrams 🔘 (Subject to change)</h3>
 
 ![Border](https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/Divider.png)
 
