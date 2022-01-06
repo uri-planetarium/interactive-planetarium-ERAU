@@ -17,8 +17,8 @@ if (process.env.NODE_ENV === "production") {
     console.log("Not in Production mode");
 }
 
-require("./APIs/games_API")(app, pool);
-require("./APIs/lobbys_API")(app, pool);
+require("./APIs/games_API")(app, pool, path);
+require("./APIs/lobbys_API")(app, pool, path);
 
 app.listen(PORT, () => {
     console.log(`Server has started on port ${PORT}`);

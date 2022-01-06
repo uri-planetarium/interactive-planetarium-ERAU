@@ -1,6 +1,6 @@
 //TODO: Change the queries from relying on the game code to the game_id
 
-module.exports = function(app, pool) {
+module.exports = function(app, pool, path) {
     /* POST (CREATE) */
     app.post("/api/games", async (req, res) => {
         try {
@@ -114,7 +114,7 @@ module.exports = function(app, pool) {
     });
 
     app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "client/build/index.html"));
+        res.sendFile(path.join(__dirname, "../player_client/build/index.html"));
     })
 }
 
