@@ -7,7 +7,7 @@
 
 ![Border](https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Divider.png)
 
-- This guide assumes Node v16.13.1 and npm v8.1.2
+- This guide assumes Node v16.13.1 and npm v8.1.2 and uses Linux terminal commands
 
 <h2>For Development</h2>
 
