@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router";
+import { getPlayerCache, setPlayerCache } from "../../Cache/player_cache";
 import "./join_game_style.css";
 
 /* Join Game Screen */
@@ -8,6 +9,11 @@ const JoinGame = () => {
     const [game_code, setGame_code] = useState(""); 
     const navigate = useNavigate();
 
+    /* Navigate to the waiting page */
+    const navigateToWaiting = () => {
+        navigate("/waiting");
+    };
+
     /* get a game object associated with user inputted game_code */
     const getGame = async (e) => {
         e.preventDefault();
@@ -15,15 +21,21 @@ const JoinGame = () => {
         try {
             /* Make GET request for game */
             console.debug(" Fetching " + ` /api/games/${game_code}`);
-            const response = await fetch(`/api/games/${game_code}`);
-            const jsonData = await response.json();
-            
-            /* If game is currently active, create the player */
-            if (jsonData.is_active) {
-                await createPlayer(jsonData);
-            } else {
-                console.log("Game " + game_code + " is not active");
-            }
+
+            const response = await fetch(`/api/games/${game_code}`)
+            .then(response => response.json())
+            .then(jsonData => {
+                /* If game is currently active, create the player */
+                if (!jsonData.error) {
+                    if (jsonData.is_active) {
+                        createPlayer(jsonData);
+                    } else {
+                        console.error("Error: Game " + game_code + " is not active");
+                    }
+                } else {
+                    console.error("Error: " + jsonData.error.code);
+                }
+            });
         } catch (error) {
             console.error(error.message);
         }
@@ -40,13 +52,16 @@ const JoinGame = () => {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
-            });
-
-            //TODO - Only do these when the query was a success
-            setPlayer_name('');
-            setGame_code('');
-
-            navigateToWaiting();
+            })
+            .then(response => response.json())
+            .then(jsonData => {
+                if (!jsonData.error) {
+                    setPlayerCache(jsonData);
+                    navigateToWaiting();
+                } else {
+                    handleError(jsonData.error);
+                } 
+            })
             
         } catch (error) {
             console.error(error.message);
@@ -56,10 +71,10 @@ const JoinGame = () => {
         
     };
 
-    /* Navigate to the waiting page */
-    const navigateToWaiting = () => {
-        navigate("/waiting");
-    };
+    const handleError = (error) => {
+        //TODO - Handle 
+        console.error("Error: " + error.code);
+    }
 
     return (
         <Fragment>

@@ -14,7 +14,7 @@ module.exports = function(app, pool, path) {
                 (err, result) => {
                     if (err) {
                         console.error('Error executing query', err.stack);
-                        res.json(err.stack);
+                        res.json({ error: err });
                     } else {
                         res.json(result.rows[0]);
                     }
@@ -37,7 +37,7 @@ module.exports = function(app, pool, path) {
                 (err, result) => {
                     if (err) {
                         console.error('Error executing query', err.stack);
-                        res.json(err.stack);
+                        res.json({ error: err });
                     } else {
                         res.json(result.rows[0]);
                     }
@@ -56,7 +56,7 @@ module.exports = function(app, pool, path) {
                 (err, result) => {
                     if (err) {
                         console.error('Error executing query', err.stack);
-                        res.json(err.stack);
+                        res.json({ error: err });
                     } else {
                         res.json(result.rows);
                     }
@@ -80,7 +80,7 @@ module.exports = function(app, pool, path) {
                 (err, result) => {
                     if (err) {
                         console.error('Error executing query', err.stack);
-                        res.json(err.stack);
+                        res.json({ error: err });
                     } else {
                         res.json("Game " + game_id + " was updated");
                     }
@@ -102,7 +102,7 @@ module.exports = function(app, pool, path) {
                 (err, result) => {
                     if (err) {
                         console.error('Error executing query', err.stack);
-                        res.json(err.stack);
+                        res.json({ error: err });
                     } else {
                         res.json("Game " + game_id + " was deleted");
                     }
