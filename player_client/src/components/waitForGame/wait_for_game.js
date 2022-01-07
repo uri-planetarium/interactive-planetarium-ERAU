@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
 
-const waitForGame = () => {
+const WaitForGame = () => {
+
     return (
         <Fragment>
             <h1>Wait a minute</h1>
         </Fragment>
     );
-}
+};
 
-export default waitForGame;
+export default WaitForGame;

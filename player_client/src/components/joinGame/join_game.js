@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from "react";
+import { useNavigate } from "react-router";
 import "./join_game_style.css";
 
 /* Join Game Screen */
 const JoinGame = () => {
     const [player_name, setPlayer_name] = useState("");
     const [game_code, setGame_code] = useState(""); 
+    const navigate = useNavigate();
 
     /* get a game object associated with user inputted game_code */
     const getGame = async (e) => {
@@ -39,13 +41,24 @@ const JoinGame = () => {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             });
+
+            //TODO - Only do these when the query was a success
+            setPlayer_name('');
+            setGame_code('');
+
+            navigateToWaiting();
+            
         } catch (error) {
             console.error(error.message);
         }
 
         /* Reset the input fields */
-        setPlayer_name('');
-        setGame_code('');
+        
+    };
+
+    /* Navigate to the waiting page */
+    const navigateToWaiting = () => {
+        navigate("/waiting");
     };
 
     return (
