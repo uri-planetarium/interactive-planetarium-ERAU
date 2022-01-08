@@ -1,13 +1,16 @@
 
 <h1 align="center">Interactive Planetarium Project ERAU</h1>
 <p align="center"><b>A mobile web app designed to add audience interactivity to Embry Riddle Aeronautical University's planetarium shows</b></p>
-<br>
 
-<h3 align="center">🔘 How to use 🔘</h3>
+<br/>
+
+<h3 align="center">- How to use -</h3>
 
 ![Border](https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Divider.png)
 
 - This guide assumes Node v16.13.1 and npm v8.1.2 and uses Linux terminal commands
+
+<br/>
 
 <h2>For Development</h2>
 
@@ -72,6 +75,8 @@
   ```
  
   React's default start script automatically updates when you make changes
+  
+<br/>
 
 <h2>For Production</h2>
 
@@ -111,7 +116,9 @@
   
   When pushing changes, `git push both` will push committed changes to both repositories
 
-<h3 align="center">🔘 Diagrams 🔘</h3>
+<br/>
+
+<h3 align="center">- Diagrams -</h3>
 
 ![Border](https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Divider.png)
 
@@ -121,8 +128,9 @@
   <img src="https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Web-UI-API-interactions.png">
 </p>
 
+<br/>
+
 <h2>Postgres Table Relationships  (Subject to change)</h2>
 <p align="center" >
   <img src="https://github.com/uri-planetarium/interactive-planetarium-ERAU/blob/main/assets/Table-Relationships.png" width="600">
 </p>
-
