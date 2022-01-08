@@ -9,6 +9,7 @@ const express = require("express"),
 app.use(cors());
 app.use(express.json());
 
+/* If in production mode, load the static content from 'player_client/build' */
 if (process.env.NODE_ENV === "production") {
     console.log("In Production Mode");
 

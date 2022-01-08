@@ -1,5 +1,9 @@
 const PLAYER_CACHE = "PLAYER_CACHE";
 
+/**
+ * @description If player data is stored in cache, retrieve it.
+ * @returns playerCache JSON object
+ */
 const getPlayerCache = () => {
     let playerCache = {
         data: {}
@@ -18,6 +22,10 @@ const getPlayerCache = () => {
     return playerCache;
 };
 
+/**
+ * @description Store given player data in cache
+ * @param {object} playerData 
+ */
 const setPlayerCache = (playerData) => {
     const playerCache = getPlayerCache();
 
