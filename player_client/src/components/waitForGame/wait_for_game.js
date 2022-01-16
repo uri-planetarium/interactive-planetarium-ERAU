@@ -26,7 +26,7 @@ const WaitForGame = () => {
 
     return (
         <Fragment>
-            <h1>Hello {player.player_name}, wait for the game to start dummy</h1>
+            <h1>Hello {player.player_name}, wait for the game to start idiot</h1>
         </Fragment>
     );
 };
