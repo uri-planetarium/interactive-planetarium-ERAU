@@ -1,7 +1,7 @@
 
 <h1 align="center">Interactive Planetarium Project ERAU</h1>
-<p align="center"><b>A mobile web app designed to add audience interactivity to Embry Riddle Aeronautical University's planetarium shows</b></p>
-
+<p align="center"><b>The goal of this project is to make an interactive web application for the ERAU Prescott Campus Planetarium</b></p>
+<p align="center"><b>The application will be hosted on the cloud and will support up to 50 audience members participating in an interactive activity</b></p>
 <br/>
 
 <h3 align="center">- How to use -</h3>
