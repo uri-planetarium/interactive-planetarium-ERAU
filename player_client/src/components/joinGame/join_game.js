@@ -88,8 +88,8 @@ const JoinGame = () => {
                 createPlayer(game)
                 .then(player => {
                     if (!player.error) {
-                        console.log("Storing player data to cache: " + JSON.stringify(player));
-                        setPlayerCache(player);
+                        console.log("Storing Cache: player.id: " + JSON.stringify(player.player_id) + " game.id: " + JSON.stringify(game.game_id));
+                        setPlayerCache(player.player_id, game.game_id);
                         navigate("/waiting");
                     } else {
                         handleError(player.error);

@@ -14,7 +14,7 @@ CREATE TABLE games (
 );
 
 CREATE TABLE lobbys (
-    player_id TEXT DEFAULT ('uid_' || gen_random_uuid()),
+    player_id TEXT DEFAULT ('uid-' || gen_random_uuid()),
     game_id INT,
     player_name VARCHAR(20) NOT NULL,
     player_score INT NOT NULL CHECK (player_score >= 0) DEFAULT 0,

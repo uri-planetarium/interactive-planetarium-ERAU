@@ -19,8 +19,9 @@ if (process.env.NODE_ENV === "production") {
     console.log("In Developer Mode");
 }
 
-require("./APIs/games_API")(app, pool, path);
 require("./APIs/lobbys_API")(app, pool, path);
+require("./APIs/games_API")(app, pool, path);
+
 
 app.listen(PORT, () => {
     console.log(`Server has started on port ${PORT}`);
