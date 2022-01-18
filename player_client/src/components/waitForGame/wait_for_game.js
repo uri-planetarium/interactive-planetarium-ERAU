@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { getPlayerCache, setPlayerCache } from "../../Cache/player_cache";
+import "./wait_for_game_style.css";
 
 /**
  * @description the WaitForGame component for the player_client

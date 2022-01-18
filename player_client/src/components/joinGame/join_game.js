@@ -8,8 +8,8 @@ import "./join_game_style.css";
  * @returns Fragment
  */
 const JoinGame = () => {
-    const [player_name, setPlayer_name] = useState("");
-    const [game_code, setGame_code] = useState(""); 
+    const [player_name, setPlayerName] = useState("");
+    const [game_code, setGameCode] = useState(""); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -88,7 +88,7 @@ const JoinGame = () => {
                 createPlayer(game)
                 .then(player => {
                     if (!player.error) {
-                        console.log("Storing Cache: player.id: " + JSON.stringify(player.player_id) + " game.id: " + JSON.stringify(game.game_id));
+                        console.debug("Storing Cache: player.id: " + JSON.stringify(player.player_id) + " game.id: " + JSON.stringify(game.game_id));
                         setPlayerCache(player.player_id, game.game_id);
                         navigate("/waiting");
                     } else {
@@ -126,12 +126,12 @@ const JoinGame = () => {
                         <div class="input-container">
                             <h2>Username</h2>
                             <input class="login-input" type="text" value={player_name} 
-                                onChange={ e => setPlayer_name(e.target.value)}/>
+                                onChange={ e => setPlayerName(e.target.value)}/>
                         </div>
                         <div class="input-container">
                             <h2>Game Code</h2>
                             <input class="login-input" type="text" value={game_code} 
-                                onChange={ e => setGame_code(e.target.value)}/>
+                                onChange={ e => setGameCode(e.target.value)}/>
                         </div>
                         <button>JOIN</button>
                     </form>

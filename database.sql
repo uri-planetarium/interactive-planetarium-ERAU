@@ -1,9 +1,9 @@
 CREATE DATABASE planetarium_uri_db;
 
+CREATE EXTENSION pgcrypto; 
+
 DROP TABLE IF EXISTS lobbys;
 DROP TABLE IF EXISTS games;
-
-CREATE EXTENSION pgcrypto; 
 
 CREATE TABLE games (
     game_id SERIAL,
