@@ -101,7 +101,7 @@
 <h4>2. Git remote the Heroku Github Repository</h4>
   
   ```
-  heroku git:remote -a erau-interactive-planetarium
+  heroku git:remote -a erau-interplanet-player
   ```
   
 <h4>3. Sync the pushes to both Github Repositories</h4>
@@ -111,7 +111,7 @@
   ```
   git remote add both https://github.com/uri-planetarium/interactive-planetarium-ERAU.git
   git remote set-url --add --push both https://github.com/uri-planetarium/interactive-planetarium-ERAU.git
-  git remote set-url --add --push both https://git.heroku.com/erau-interactive-planetarium.git
+  git remote set-url --add --push both https://git.heroku.com/erau-interplanet-player.git
   ```
   
   When pushing changes, `git push both` will push committed changes to both repositories
