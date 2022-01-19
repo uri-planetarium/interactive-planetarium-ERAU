@@ -44,7 +44,7 @@
  
   ```
   PG_USER = your_username
-  PG_PASSWROD = your_password
+  PG_PASSWORD = your_password
   PG_HOST = localhost
   PG_DATABASE = planetarium_uri_db
   PG_PORT = 5432
