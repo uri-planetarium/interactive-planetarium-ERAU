@@ -36,13 +36,13 @@ const JoinGame = () => {
                 if (response.is_active) {
                     return response;
                 } else {
-                    return { error: "Error: Game " + game_code + " is not active"};
+                    throw new Error("Game " + game_code + " is not active");
                 }
             } else {
-                return { error: "Error: " + response.error.code };
+                throw new Error(response.error.code);
             }
         } catch (error) {
-            return { error: "Error: " + error.message };
+            throw new Error(error.message);
         }
     };
 
@@ -67,10 +67,10 @@ const JoinGame = () => {
             if (!response.error) {
                 return response;
             } else {
-                return { error: "Error: " + response.error.code };
+                throw new Error(response.error.code);
             }
         } catch (error) {
-            return { error: "Error: " + error.message };
+            throw new Error(error.message);
         }
     };
 
@@ -81,24 +81,22 @@ const JoinGame = () => {
     const playerRegister = (e) => {
         e.preventDefault();
 
-        /* First retrieve the game then create a new player */
         getGame()
         .then(game => {
-            if (!game.error) {
-                createPlayer(game)
-                .then(player => {
-                    if (!player.error) {
-                        console.debug("Storing Cache: player.id: " + JSON.stringify(player.player_id) + " game.code: " + JSON.stringify(game.game_code));
-                        setPlayerCache(player.player_id, game.game_code);
-                        navigate("/waiting");
-                    } else {
-                        handleError(player.error);
-                    }
-                });
-            } else {
-                handleError(game.error);
-            }  
-        });
+            createPlayer(game)
+            .then(player => {
+                console.debug("Storing Cache: player.id: " 
+                    + JSON.stringify(player.player_id) 
+                    + " game.code: " 
+                    + JSON.stringify(game.game_code)
+                );
+
+                setPlayerCache(player.player_id, game.game_code);
+                navigate("/waiting");
+            })
+            .catch(error => handleError(error));
+        })
+        .catch(error => handleError(error));
     }
 
     /**
@@ -114,7 +112,7 @@ const JoinGame = () => {
      */
     const handleError = (error) => {
         //TODO - Handle 
-        console.error(error);
+        console.error("Working" + error);
     }
 
     return (
