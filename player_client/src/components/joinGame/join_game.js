@@ -85,11 +85,8 @@ const JoinGame = () => {
         .then(game => {
             createPlayer(game)
             .then(player => {
-                console.debug("Storing Cache: player.id: " 
-                    + JSON.stringify(player.player_id) 
-                    + " game.code: " 
-                    + JSON.stringify(game.game_code)
-                );
+                console.debug(`Storing Cache: player.id: ${JSON.stringify(player.player_id)} 
+                    and game.code: ${JSON.stringify(game.game_code)}`);
 
                 setPlayerCache(player.player_id, game.game_code);
                 navigate("/waiting");
@@ -112,7 +109,7 @@ const JoinGame = () => {
      */
     const handleError = (error) => {
         //TODO - Handle 
-        console.error("Working" + error);
+        console.error(error);
     }
 
     return (
