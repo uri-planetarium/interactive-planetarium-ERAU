@@ -56,7 +56,7 @@ const JoinGame = () => {
             const body = { player_name };
 
             /* Make POST request for player */
-            const response = await fetch(`/api/lobbys/${gameData.game_id}`, {
+            const response = await fetch(`/api/lobbys/${gameData.game_code}`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
@@ -88,8 +88,8 @@ const JoinGame = () => {
                 createPlayer(game)
                 .then(player => {
                     if (!player.error) {
-                        console.debug("Storing Cache: player.id: " + JSON.stringify(player.player_id) + " game.id: " + JSON.stringify(game.game_id));
-                        setPlayerCache(player.player_id, game.game_id);
+                        console.debug("Storing Cache: player.id: " + JSON.stringify(player.player_id) + " game.code: " + JSON.stringify(game.game_code));
+                        setPlayerCache(player.player_id, game.game_code);
                         navigate("/waiting");
                     } else {
                         handleError(player.error);

@@ -26,12 +26,12 @@ const getPlayerCache = () => {
  * @description Store given player data in cache
  * @param {object} playerData 
  */
-const setPlayerCache = (playerID, gameID) => {
+const setPlayerCache = (playerID, gameCode) => {
     const playerCache = getPlayerCache();
 
     const info = {
         player_id: playerID,
-        game_id: gameID
+        game_code: gameCode
     }
 
     playerCache.data = info;
