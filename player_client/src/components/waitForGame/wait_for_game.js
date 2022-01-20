@@ -7,12 +7,12 @@ import "./wait_for_game_style.css";
  * @returns Fragment
  */
 const WaitForGame = () => { 
-    const { player_id, game_id } = getPlayerCache().data;
+    const { player_id, game_code } = getPlayerCache().data;
 
     //TODO - Come up with better default values
     const [ player, setPlayer ] = useState({
         player_id: 'null', 
-        game_id: 'null',
+        game_code: 'null',
         player_name: 'null',
         player_score: 'null'
     });
@@ -45,7 +45,7 @@ const WaitForGame = () => {
      */
     const getPlayer = async () => {
         try {
-            const response = await fetch(`/api/lobbys/${game_id}/${player_id}`)
+            const response = await fetch(`/api/lobbys/${game_code}/${player_id}`)
             .then(response => response.json());
 
             if (!response.error) {
@@ -69,7 +69,7 @@ const WaitForGame = () => {
 
     return (
         <Fragment>
-            <h1>Hello {player.player_name}, wait for the game {player.game_id} to start idiot</h1>
+            <h1>Hello {player.player_name}, wait for the game {player.game_code} to start idiot</h1>
         </Fragment>
     );
 };
