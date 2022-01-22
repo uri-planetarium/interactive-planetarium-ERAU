@@ -30,8 +30,8 @@ const setPlayerCache = (playerID, gameCode) => {
     const playerCache = getPlayerCache();
 
     const info = {
-        player_id: playerID,
-        game_code: gameCode
+        cached_player_id: playerID,
+        cached_game_code: gameCode
     }
 
     playerCache.data = info;

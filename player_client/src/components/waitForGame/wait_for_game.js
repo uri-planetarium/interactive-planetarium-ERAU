@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { getPlayerCache, setPlayerCache } from "../../Cache/player_cache";
+import { getPlayer } from "./wait_for_game_reqs";
 import "./wait_for_game_style.css";
 
 /**
@@ -7,7 +8,6 @@ import "./wait_for_game_style.css";
  * @returns Fragment
  */
 const WaitForGame = () => { 
-    const { player_id, game_code } = getPlayerCache().data;
 
     //TODO - Come up with better default values
     const [ player, setPlayer ] = useState({
@@ -25,37 +25,11 @@ const WaitForGame = () => {
      * @description Retrieve player info from the cache
      */
     const getPlayerInfo = () => {
-        try {
-            getPlayer()
-            .then(player => {
-                if (!player.error) {
-                    setPlayer(player);
-                } else {
-                    handleError(player.error);
-                }
-            });
-        } catch (error) {
-            console.error(error.message);
-        }
-    }
+        const { cached_player_id, cached_game_code } = getPlayerCache().data;
 
-    /**
-     * @description Attempt to get a player using a player_id and game_id
-     * @returns Either a player or an error JSON object
-     */
-    const getPlayer = async () => {
-        try {
-            const response = await fetch(`/api/lobbys/${game_code}/${player_id}`)
-            .then(response => response.json());
-
-            if (!response.error) {
-                return response;
-            } else {
-                return { error: "Error: " + response.error.code };
-            }
-        } catch (error) {
-            return { error: "Error:" + error.message };
-        }
+        getPlayer(cached_player_id, cached_game_code)
+        .then(player => setPlayer(player))
+        .catch(error => handleError(`Player Retrieval Failure - ${error}`));
     };
 
     /**
