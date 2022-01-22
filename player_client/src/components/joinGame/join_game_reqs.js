@@ -1,6 +1,7 @@
 /**
  * @description Attempt to create a player using a player_name and game_id
- * @param {object} gameData 
+ * @param {string} player_name  
+ * @param {integer} game_code
  * @returns Either a player or an error JSON object
  */
  const createPlayer = async (player_name, game_code) => {
@@ -28,10 +29,13 @@
 
 /**
  * @description Attempt to retrieve a player from the API using a player_id and game_code
+ * @param {string} player_id
+ * @param {integer} game_code
  * @returns Either a player or an error JSON object
  */
 const getPlayer = async (player_id, game_code) => {
     try {
+        /* Make GET request for player */
         const response = await fetch(`/api/lobbys/${game_code}/${player_id}`)
         .then(response => response.json());
 
@@ -48,6 +52,7 @@ const getPlayer = async (player_id, game_code) => {
 
 /**
  * @description Attempt to retrieve a game from the API using a game_code
+ * @param {integer} game_code
  * @returns Either a game or an error JSON object
  */
  const getGame = async (game_code) => {

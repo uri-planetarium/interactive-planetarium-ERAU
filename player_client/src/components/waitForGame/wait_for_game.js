@@ -43,7 +43,7 @@ const WaitForGame = () => {
 
     return (
         <Fragment>
-            <h1>Hello {player.player_name}, wait for the game {player.game_code} to start idiot</h1>
+            <h1>Yo yo {player.player_name}, wait for the game to start yo!</h1>
         </Fragment>
     );
 };

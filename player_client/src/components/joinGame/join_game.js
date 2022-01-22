@@ -48,6 +48,7 @@ const JoinGame = () => {
             getGame(cached_game_code)
             .then(() => {
                 console.debug("Login Success yay");
+
                 navigate("/waiting");
             })
             .catch(error => handleError(`Login Failure - ${error}`));
