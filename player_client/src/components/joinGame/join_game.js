@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { getPlayerCache, setPlayerCache } from "../../Cache/player_cache";
+import { createPlayer, getPlayer, getGame } from "./join_game_reqs";
 import "./join_game_style.css";
 
 /**
@@ -8,82 +9,24 @@ import "./join_game_style.css";
  * @returns Fragment
  */
 const JoinGame = () => {
-    const [player_name, setPlayerName] = useState("");
-    const [game_code, setGameCode] = useState(""); 
+    const [player_name, setPlayerName] = useState(""); // Set by the user
+    const [game_code, setGameCode] = useState("");  // Set by the user
     const navigate = useNavigate();
 
-    useEffect(() => {
-        try {
-            playerLogin();
-        } catch (error) {
-            console.error("Error: Couldn't sign-in");
-        }
-    }, []);
-
-    /**
-     * @description Attempt to retrieve a game from the API using a game_code
-     * @returns Either a game or an error JSON object
-     */
-    const getGame = async () => {
-        try {
-            /* Make GET request for game */
-            const response = await fetch(`/api/games/${game_code}`)
-            .then(response => response.json());
-
-            /* If there was an error with the query, return it */
-            if (!response.error) {
-                /* If game is currently active, create the player */
-                if (response.is_active) {
-                    return response;
-                } else {
-                    throw new Error("Game " + game_code + " is not active");
-                }
-            } else {
-                throw new Error(response.error.code);
-            }
-        } catch (error) {
-            throw new Error(error.message);
-        }
-    };
-
-    /**
-     * @description Attempt to create a player using a player_name and game_id
-     * @param {object} gameData 
-     * @returns Either a player or an error JSON object
-     */
-    const createPlayer = async (gameData) => {
-        try {
-            const body = { player_name };
-
-            /* Make POST request for player */
-            const response = await fetch(`/api/lobbys/${gameData.game_code}`, {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(body)
-            })
-            .then(response => response.json());
-
-            /* If there was an error with the query, return it */
-            if (!response.error) {
-                return response;
-            } else {
-                throw new Error(response.error.code);
-            }
-        } catch (error) {
-            throw new Error(error.message);
-        }
-    };
+    /* When the page first renders, attempt a login using 
+     * the Player data stored in local storage */ 
+    useEffect(() => attemptLogin(), []);
 
     /**
      * @description Attempt to register a new player
      * @param {Event} e 
      */
-    const playerRegister = (e) => {
+    const attemptRegister = (e) => {
         e.preventDefault();
 
-        getGame()
+        getGame(game_code)
         .then(game => {
-            createPlayer(game)
+            createPlayer(player_name, game.game_code)
             .then(player => {
                 console.debug(`Storing Cache: player.id: ${JSON.stringify(player.player_id)} 
                     and game.code: ${JSON.stringify(game.game_code)}`);
@@ -91,16 +34,28 @@ const JoinGame = () => {
                 setPlayerCache(player.player_id, game.game_code);
                 navigate("/waiting");
             })
-            .catch(error => handleError(error));
+            .catch(error => handleError(`Register Failure - ${error}`));
         })
-        .catch(error => handleError(error));
+        .catch(error => handleError(`Register Failure - ${error}`));
     }
 
     /**
      * @description Attempt to login if player is stored in cache
      */
-    const playerLogin = () => {
-        // TODO - Attempt game login via the cached player data
+    const attemptLogin = () => {
+        const { cached_player_id, cached_game_code } = getPlayerCache().data;
+
+        getPlayer(cached_player_id, cached_game_code)
+        .then(player => {
+            getGame(cached_game_code)
+            .then(() => {
+                console.debug("Login Success yay");
+
+                navigate("/waiting");
+            })
+            .catch(error => handleError(`Login Failure - ${error}`));
+        })
+        .catch(error => handleError(`Login Failure - ${error}`));
     }
 
     /**
@@ -117,7 +72,7 @@ const JoinGame = () => {
             <div class="login-container">
                 <h1>Join a Game</h1>
                 <div class="login-container2">
-                    <form onSubmit={playerRegister}>
+                    <form onSubmit={attemptRegister}>
                         <div class="input-container">
                             <h2>Username</h2>
                             <input class="login-input" type="text" value={player_name} 
