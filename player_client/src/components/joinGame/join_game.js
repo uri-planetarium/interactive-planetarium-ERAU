@@ -9,10 +9,12 @@ import "./join_game_style.css";
  * @returns Fragment
  */
 const JoinGame = () => {
-    const [player_name, setPlayerName] = useState("");
-    const [game_code, setGameCode] = useState(""); 
+    const [player_name, setPlayerName] = useState(""); // Set by the user
+    const [game_code, setGameCode] = useState("");  // Set by the user
     const navigate = useNavigate();
 
+    /* When the page first renders, attempt a login using 
+     * the Player data stored in local storage */ 
     useEffect(() => attemptLogin(), []);
 
     /**

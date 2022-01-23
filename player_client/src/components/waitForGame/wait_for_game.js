@@ -8,18 +8,16 @@ import "./wait_for_game_style.css";
  * @returns Fragment
  */
 const WaitForGame = () => { 
-
-    //TODO - Come up with better default values
     const [ player, setPlayer ] = useState({
-        player_id: 'null', 
-        game_code: 'null',
+        player_id: 'uid-000-000-000-000-000', 
+        game_code: '000000',
         player_name: 'null',
-        player_score: 'null'
+        player_score: '0'
     });
     
-    useEffect(() => {
-        getPlayerInfo();
-    }, []);
+    /* When the page first renders, retrieve the player data 
+     * that was created in the JoinGame component */ 
+    useEffect(() => getPlayerInfo(), []);
     
     /**
      * @description Retrieve player info from the cache

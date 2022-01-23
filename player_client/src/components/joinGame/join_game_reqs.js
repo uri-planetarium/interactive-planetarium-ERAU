@@ -77,5 +77,4 @@ const getPlayer = async (player_id, game_code) => {
     }
 };
 
-
 export { createPlayer, getPlayer, getGame };
