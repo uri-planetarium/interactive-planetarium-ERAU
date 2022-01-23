@@ -1,6 +1,7 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router";
-import { getPlayerCache, setPlayerCache } from "../../Cache/player_cache";
+import { SocketContext } from "../../context/socket/socket";
+import { getPlayerCache, setPlayerCache } from "../../cache/player_cache";
 import { createPlayer, getPlayer, getGame } from "./join_game_reqs";
 import "./join_game_style.css";
 
@@ -9,6 +10,7 @@ import "./join_game_style.css";
  * @returns Fragment
  */
 const JoinGame = () => {
+    const socket = useContext(SocketContext);
     const [player_name, setPlayerName] = useState(""); // Set by the user
     const [game_code, setGameCode] = useState("");  // Set by the user
     const navigate = useNavigate();
@@ -32,6 +34,8 @@ const JoinGame = () => {
                     and game.code: ${JSON.stringify(game.game_code)}`);
 
                 setPlayerCache(player.player_id, game.game_code);
+                joinSocketRoom(game.game_code, player.player_id);
+
                 navigate("/waiting");
             })
             .catch(error => handleError(`Register Failure - ${error}`));
@@ -48,8 +52,11 @@ const JoinGame = () => {
         getPlayer(cached_player_id, cached_game_code)
         .then(player => {
             getGame(cached_game_code)
-            .then(() => {
+            .then(game => {
                 console.debug("Login Success yay");
+
+                //TODO - Vulnerability - Description in Github Issue
+                joinSocketRoom(game.game_code, player.player_id);
 
                 navigate("/waiting");
             })
@@ -57,6 +64,21 @@ const JoinGame = () => {
         })
         .catch(error => handleError(`Login Failure - ${error}`));
     }
+
+    /**
+     * @description Join a socket room created by the host and listen for messages
+     * @param {integer} game_code 
+     * @param {string} player_id
+     */
+        const joinSocketRoom = (game_code, player_id) => {
+            socket.emit("join room", game_code, player_id);
+    
+            console.debug(`joined room ${game_code}`);
+    
+            socket.on("message", (message) => {
+                console.log(message);
+            });
+        };
 
     /**
      * @description Handle errors from the API connections

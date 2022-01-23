@@ -1,5 +1,6 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { getPlayerCache, setPlayerCache } from "../../Cache/player_cache";
+import React, { Fragment, useState, useEffect, useContext } from "react";
+import { SocketContext } from "../../context/socket/socket";
+import { getPlayerCache, setPlayerCache } from "../../cache/player_cache";
 import { getPlayer } from "./wait_for_game_reqs";
 import "./wait_for_game_style.css";
 
@@ -8,6 +9,7 @@ import "./wait_for_game_style.css";
  * @returns Fragment
  */
 const WaitForGame = () => { 
+    const socket = useContext(SocketContext);
     const [ player, setPlayer ] = useState({
         player_id: 'uid-000-000-000-000-000', 
         game_code: '000000',
