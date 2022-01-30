@@ -5,6 +5,7 @@ import './App.css';
 import { SocketContext, socket } from "./context/socket/socket"; 
 import JoinGame from "./components/joinGame/join_game";
 import WaitForGame from "./components/waitForGame/wait_for_game";
+import LeftGame from "./components/leftGame/left_game";
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<JoinGame />}/>
                     <Route path="/waiting" element={<WaitForGame />}/>
+                    <Route path="/removed" element={<LeftGame />}/>
                 </Routes>
             </Router>
         </SocketContext.Provider>
