@@ -19,8 +19,10 @@ const WaitForGame = () => {
     
     /* When the page first renders, retrieve the player data 
      * that was created in the JoinGame component */ 
-    useEffect(() => getPlayerInfo(), []);
-    
+    useEffect(() => {
+        getPlayerInfo();
+    }, []);
+
     /**
      * @description Retrieve player info from the cache
      */
@@ -28,9 +30,25 @@ const WaitForGame = () => {
         const { cached_player_id, cached_game_code } = getPlayerCache().data;
 
         getPlayer(cached_player_id, cached_game_code)
-        .then(player => setPlayer(player))
+        .then(receivedPlayer => {
+            setPlayer(receivedPlayer);
+            joinSocketRoom(receivedPlayer.game_code, receivedPlayer.player_name);
+        })
         .catch(error => handleError(`Player Retrieval Failure - ${error}`));
     };
+
+    /**
+     * @description Join a socket room created by the host and listen for messages
+     */
+        const joinSocketRoom = (game_code, player_id) => {
+            socket.emit("join room", game_code, player_id);
+    
+            console.debug(`join_game - joined room ${game_code}`);
+    
+            socket.on("message", (message) => {
+                console.log(`join_game - New message: ${message}`);
+            });
+        };
 
     /**
      * @description Handle errors from the API connections
@@ -40,6 +58,13 @@ const WaitForGame = () => {
         //TODO - Handle 
         console.error(error);
     }
+
+    /* When use tries to close tab, ask them if they are sure */
+    window.addEventListener("beforeunload",  (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        e.returnValue = '';
+    });
 
     return (
         <Fragment>
