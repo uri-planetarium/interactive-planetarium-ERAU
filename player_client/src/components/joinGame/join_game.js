@@ -80,7 +80,7 @@ const JoinGame = () => {
                         </div>
                         <div class="input-container">
                             <h2>Game Code</h2>
-                            <input class="login-input" type="text" value={game_code} 
+                            <input class="login-input" type="number" max="999999" min="100000" value={game_code} 
                                 onChange={ e => setGameCode(e.target.value)}/>
                         </div>
                         <button>JOIN</button>
@@ -90,5 +90,6 @@ const JoinGame = () => {
         </Fragment>
     );
 };
+
 
 export default JoinGame;
