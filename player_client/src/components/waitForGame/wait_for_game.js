@@ -52,7 +52,7 @@ const WaitForGame = () => {
         });
 
         socket.on("you have been removed", removed_player_id => {
-            if (player_id == removed_player_id) {
+            if (removed_player_id == "all" || player_id == removed_player_id) {
                 socket.emit("leave room");
                 navigate("/removed");
             };
