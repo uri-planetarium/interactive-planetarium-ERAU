@@ -1,5 +1,7 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { getPlayerCache, setPlayerCache } from "../../Cache/player_cache";
+import React, { Fragment, useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router";
+import { SocketContext } from "../../context/socket/socket";
+import { getPlayerCache, setPlayerCache } from "../../cache/player_cache";
 import { getPlayer } from "./wait_for_game_reqs";
 import "./wait_for_game_style.css";
 
@@ -8,6 +10,8 @@ import "./wait_for_game_style.css";
  * @returns Fragment
  */
 const WaitForGame = () => { 
+    const socket = useContext(SocketContext);
+    const navigate = useNavigate();
     const [ player, setPlayer ] = useState({
         player_id: 'uid-000-000-000-000-000', 
         game_code: '000000',
@@ -17,8 +21,10 @@ const WaitForGame = () => {
     
     /* When the page first renders, retrieve the player data 
      * that was created in the JoinGame component */ 
-    useEffect(() => getPlayerInfo(), []);
-    
+    useEffect(() => {
+        getPlayerInfo();
+    }, []);
+
     /**
      * @description Retrieve player info from the cache
      */
@@ -26,9 +32,39 @@ const WaitForGame = () => {
         const { cached_player_id, cached_game_code } = getPlayerCache().data;
 
         getPlayer(cached_player_id, cached_game_code)
-        .then(player => setPlayer(player))
+        .then(receivedPlayer => {
+            setPlayer(receivedPlayer);
+            joinSocketRoom(receivedPlayer.game_code, receivedPlayer.player_id);
+        })
         .catch(error => handleError(`Player Retrieval Failure - ${error}`));
     };
+
+    /**
+     * @description Join a socket room created by the host and listen for messages
+     */
+    const joinSocketRoom = (game_code, player_id) => {
+        socket.emit("join room", game_code, player_id);
+
+        console.debug(`join_game - joined room ${game_code}`);
+
+        socket.on("game start", () => {
+            console.log(`join_game - game start`);
+        });
+
+        socket.on("you have been removed", removed_player_id => {
+            if (removed_player_id == "all" || player_id == removed_player_id) {
+                socket.emit("leave room");
+                navigate("/removed");
+            };
+        });
+    };
+
+    /**
+     * @description Send a socket.io message to Host to leave the game
+     */
+    const leaveGame = () => {
+        socket.emit("leave game");
+    }
 
     /**
      * @description Handle errors from the API connections
@@ -39,9 +75,17 @@ const WaitForGame = () => {
         console.error(error);
     }
 
+    /* When use tries to close tab, ask them if they are sure */
+    window.addEventListener("beforeunload",  (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        e.returnValue = '';
+    });
+
     return (
         <Fragment>
             <h1>Yo yo {player.player_name}, wait for the game to start yo!</h1>
+            <button onClick={leaveGame}>Leave Game</button>
         </Fragment>
     );
 };

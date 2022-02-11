@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { getPlayerCache, setPlayerCache } from "../../Cache/player_cache";
+import { getPlayerCache, setPlayerCache } from "../../cache/player_cache";
 import { createPlayer, getPlayer, getGame } from "./join_game_reqs";
 import "./join_game_style.css";
 
@@ -15,7 +15,7 @@ const JoinGame = () => {
 
     /* When the page first renders, attempt a login using 
      * the Player data stored in local storage */ 
-    useEffect(() => attemptLogin(), []);
+    //useEffect(() => attemptLogin(), []);
 
     /**
      * @description Attempt to register a new player
@@ -28,7 +28,7 @@ const JoinGame = () => {
         .then(game => {
             createPlayer(player_name, game.game_code)
             .then(player => {
-                console.debug(`Storing Cache: player.id: ${JSON.stringify(player.player_id)} 
+                console.debug(`join_game - Storing Cache: player.id: ${JSON.stringify(player.player_id)} 
                     and game.code: ${JSON.stringify(game.game_code)}`);
 
                 setPlayerCache(player.player_id, game.game_code);
@@ -48,8 +48,8 @@ const JoinGame = () => {
         getPlayer(cached_player_id, cached_game_code)
         .then(player => {
             getGame(cached_game_code)
-            .then(() => {
-                console.debug("Login Success yay");
+            .then(game => {
+                console.debug("join_game - Login Success yay");
 
                 navigate("/waiting");
             })
