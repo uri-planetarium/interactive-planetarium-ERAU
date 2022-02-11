@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router";
 import { SocketContext } from "../../context/socket/socket";
-import { getPlayerCache, setPlayerCache } from "../../cache/player_cache";
+import { getPlayerCache } from "../../cache/player_cache";
 import { getPlayer } from "./wait_for_game_reqs";
 import "./wait_for_game_style.css";
 
