@@ -23,7 +23,9 @@ if (process.env.NODE_ENV === "production") {
     console.log("In Developer Mode");
 }
 
-
+app.get('*',(req, res) => {
+    res.sendFile(path.resolve(__dirname, 'player_client', 'build', 'index.html'));
+});
 
 
 require("./APIs/lobbys_API")(app, pool, path);
