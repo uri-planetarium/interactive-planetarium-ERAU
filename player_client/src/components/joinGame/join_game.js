@@ -15,7 +15,7 @@ const JoinGame = () => {
 
     /* When the page first renders, attempt a login using 
      * the Player data stored in local storage */ 
-    //useEffect(() => attemptLogin(), []);
+    useEffect(() => attemptLogin(), []);
 
     /**
      * @description Attempt to register a new player
