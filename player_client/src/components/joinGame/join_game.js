@@ -76,7 +76,7 @@ const JoinGame = () => {
                         <div class="input-container">
                             <h2>Username</h2>
                             <input class="login-input" type="text" value={player_name} 
-                                onChange={ e => setPlayerName(e.target.value)}/>
+                                onChange={ e => {setPlayerName(e.target.value); console.log(e.target.value)}}/>
                         </div>
                         <div class="input-container">
                             <h2>Game Code</h2>
