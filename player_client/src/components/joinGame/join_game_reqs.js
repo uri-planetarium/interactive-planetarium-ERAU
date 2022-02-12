@@ -58,25 +58,21 @@ const getPlayer = async (player_id, game_code) => {
  const getGame = async (game_code) => {
     try {
         /* Make GET request for game */
-        const response = await fetch(`/api/games/${game_code}`);
-        //.then(response => response.json());
+        const response = await fetch(`/api/games/${game_code}`)
+        .then(response => response.json());
 
-        response.json()
-        .then(response => {
-            /* If there was an error with the query, return it */
-            if (!response.error) {
-                /* If game is currently active, create the player */
-                if (response.is_active) {
-                    return response;
-                } else {
-                    throw new Error("Game " + game_code + " is not active");
-                }
+        console.log(response);z
+        /* If there was an error with the query, return it */
+        if (!response.error) {
+            /* If game is currently active, create the player */
+            if (response.is_active) {
+                return response;
             } else {
-                throw new Error(response.error.code);
+                throw new Error("Game " + game_code + " is not active");
             }
-        });
-
-        
+        } else {
+            throw new Error(response.error.code);
+        }
     } catch (error) {
         throw new Error(error.message);
     }
