@@ -4,9 +4,9 @@ import { useNavigate } from "react-router";
 const LeftGame = () => {
     const navigate = useNavigate();
     
-    // window.addEventListener("popstate", e => {  
-    //     navigate('/', {replace: true});
-    // });
+    window.addEventListener("popstate", e => {  
+        navigate('/', {replace: true});
+    });
 
     return (
         <Fragment>
