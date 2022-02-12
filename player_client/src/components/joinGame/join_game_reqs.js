@@ -61,7 +61,7 @@ const getPlayer = async (player_id, game_code) => {
         const response = await fetch(`/api/games/${game_code}`)
         .then(response => response.json());
 
-        console.log(response);z
+        console.log(response);
         /* If there was an error with the query, return it */
         if (!response.error) {
             /* If game is currently active, create the player */
