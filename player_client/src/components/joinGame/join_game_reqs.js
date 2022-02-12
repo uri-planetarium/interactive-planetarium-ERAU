@@ -74,7 +74,7 @@ const getPlayer = async (player_id, game_code) => {
             throw new Error(response.error.code);
         }
     } catch (error) {
-        throw new Error(error.message);
+        throw new Error(error.message + " THIS IS THE ISSUE");
     }
 };
 
