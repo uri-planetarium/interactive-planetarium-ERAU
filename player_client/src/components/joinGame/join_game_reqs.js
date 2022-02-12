@@ -60,10 +60,7 @@ const getPlayer = async (player_id, game_code) => {
         /* Make GET request for game */
         const response = await fetch(`/api/games/${game_code}`)
         .then(response => { 
-            console.log("response: ", response);
-            console.log("response.json() pre: ", response.json());
-            response.json();
-            console.log("response.json() post: ", response.json());
+            response.json().then(newResponse => console.log("response: " + newResponse))
         });
 
         
