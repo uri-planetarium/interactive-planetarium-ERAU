@@ -58,7 +58,7 @@ const getPlayer = async (player_id, game_code) => {
  const getGame = async (game_code) => {
     try {
         /* Make GET request for game */
-        const response = await fetch(`api/games/${game_code}`)
+        const response = await fetch(`/api/games/${game_code}`)
         .then(response => response.json());
 
         console.log(response);
@@ -74,7 +74,7 @@ const getPlayer = async (player_id, game_code) => {
             throw new Error(response.error.code);
         }
     } catch (error) {
-        throw new Error(error.message + "This is the problem");
+        throw new Error(error.message);
     }
 };
 
