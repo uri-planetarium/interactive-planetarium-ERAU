@@ -16,9 +16,7 @@ if (process.env.NODE_ENV === "production") {
     /* Serve our static content */
     app.use(express.static(path.join(__dirname, "player_client/build")));
 
-    app.get('*', (request, response) => {
-        response.sendFile(path.join(__dirname, "player_client/build", 'index.html'));
-    });
+    
 } else {
     console.log("In Developer Mode");
 }

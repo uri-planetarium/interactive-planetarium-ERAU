@@ -115,6 +115,13 @@ module.exports = function(app, pool, path) {
             console.error(error.message);
         }
     });
+
+    
+    if (process.env.NODE_ENV === "production") {
+        app.get('*', (request, response) => {
+            response.sendFile(path.join(__dirname, "player_client/build", 'index.html'));
+        });
+    }
 }
 
 
