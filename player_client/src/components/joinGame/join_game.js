@@ -37,6 +37,7 @@ const JoinGame = () => {
             .catch(error => handleError(`Register Failure - ${error}`));
         })
         .catch(error => handleError(`Register Failure - ${error}`));
+        //TODO: The user should receive an error modal if this becomes an error
     }
 
     /**
@@ -49,19 +50,21 @@ const JoinGame = () => {
         .then(player => {
             getGame(cached_game_code)
             .then(game => {
-                console.debug("join_game - Login Success yay");
 
+                console.debug("join_game - Login Success yay");
                 navigate("/waiting");
             })
             .catch(error => handleError(`Login Failure - ${error}`));
         })
         .catch(error => handleError(`Login Failure - ${error}`));
+        //TODO: The user should receive an error modal if this becomes an error
     }
 
     /**
      * @description Handle errors from the API connections
      * @param {String} error 
      */
+    //NOTE: Consider whether we even want a universal way to handle errors
     const handleError = (error) => {
         //TODO - Handle 
         console.error(error);

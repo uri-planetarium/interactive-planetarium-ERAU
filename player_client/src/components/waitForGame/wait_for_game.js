@@ -37,6 +37,7 @@ const WaitForGame = () => {
             joinSocketRoom(receivedPlayer.game_code, receivedPlayer.player_id);
         })
         .catch(error => handleError(`Player Retrieval Failure - ${error}`));
+        //TODO: The user should receive an error modal if this becomes an error
     };
 
     /**
@@ -70,6 +71,7 @@ const WaitForGame = () => {
      * @description Handle errors from the API connections
      * @param {String} error 
      */
+    //NOTE: Consider whether we even want a universal way to handle errors
     const handleError = (error) => {
         //TODO - Handle 
         console.error(error);
