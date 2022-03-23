@@ -90,6 +90,55 @@ const JoinGame = () => {
                     </form>
                 </div>
             </div>
+            
+            <div class="planet">
+                <div>
+                    <img src="https://i.imgur.com/bSUfuYs.png" alt="" height="75px" width="75px"></img>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/baQpJrM.png" alt="" height="75px" width="75px"></img>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/ij9nZQN.png" alt="" height="75px" width="75px"></img>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/x6WhUhv.png" alt="" height="75px" width="75px"></img>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/RgfJ0Xr.png" alt="" height="75px" width="75px"></img>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/IOkuBKj.png" alt="" height="75px" width="75px"></img>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/KOV9LKW.png" alt="" height="75px" width="75px"></img>
+                </div>
+            </div>
+
+            <div class="planet planet1">
+                <div>
+                    <img src="https://i.imgur.com/bSUfuYs.png" alt="" height="75px" width="75px"></img>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/baQpJrM.png" alt="" height="75px" width="75px"></img>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/ij9nZQN.png" alt="" height="75px" width="75px"></img>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/x6WhUhv.png" alt="" height="75px" width="75px"></img>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/RgfJ0Xr.png" alt="" height="75px" width="75px"></img>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/IOkuBKj.png" alt="" height="75px" width="75px"></img>
+                </div>
+                <div>
+                    <img src="https://i.imgur.com/KOV9LKW.png" alt="" height="75px" width="75px"></img>
+                </div>
+            </div>
+
         </Fragment>
     );
 };

@@ -52,7 +52,11 @@ const WaitForGame = () => {
             console.log(`join_game - game start`);
         });
 
+<<<<<<< HEAD
         socket.on("you have been removed", ({ removed_game_code, removed_player_id }) => {
+=======
+        socket.on("removed", ({ removed_game_code, removed_player_id }) => {
+>>>>>>> origin/main
             console.log(`Game Code: ${removed_game_code}\nPlayer Id: ${removed_player_id}\n`);
             if ((removed_player_id === "all" || 
                 removed_player_id === player_id) && 
