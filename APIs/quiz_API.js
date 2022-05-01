@@ -77,7 +77,6 @@ module.exports = function(app, pool, path) {
 
             pool.query(
                 "SELECT * FROM quizzes",
-                [game_code],
                 (err, result) => {
                     if (err) {
                         console.error('Error executing query', err.stack);
