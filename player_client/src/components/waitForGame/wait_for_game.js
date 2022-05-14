@@ -55,8 +55,7 @@ const WaitForGame = () => {
         socket.on("removed", ({ removed_game_code, removed_player_id }) => {
             console.log(`Game Code: ${removed_game_code}\nPlayer Id: ${removed_player_id}\n`);
             if ((removed_player_id === "all" || 
-                removed_player_id === player_id) && 
-                (removed_game_code === game_code)) {
+                removed_player_id === player_id)) {
                 socket.emit("leave room");
                 navigate("/removed");
             };
